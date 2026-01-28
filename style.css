@@ -1,3 +1,5 @@
+/* ===== KRM TRADING AI - أنماط احترافية ===== */
+
 :root {
     --primary-black: #0a0a0a;
     --dark-bg: #111111;
@@ -21,17 +23,56 @@
 }
 
 body {
-    background: linear-gradient(135deg, var(--primary-black), #1a1a2e);
+    background-color: var(--primary-black);
     color: var(--text-light);
     direction: rtl;
     min-height: 100vh;
-    background-attachment: fixed;
+    overflow-x: hidden;
 }
 
-.header {
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 20px 30px;
+/* ===== شاشة البداية ===== */
+.welcome-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary-black), #1a1a2e);
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.logo-container {
+    margin-bottom: 40px;
+}
+
+.logo-main {
+    font-size: 48px;
+    font-weight: 900;
+    background: linear-gradient(45deg, var(--gold), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.logo-sub {
+    font-size: 16px;
+    color: var(--text-gray);
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+/* ===== الهيدر ===== */
+.app-header {
+    background: linear-gradient(90deg, var(--primary-black), var(--dark-bg));
+    padding: 15px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,36 +83,15 @@ body {
     z-index: 1000;
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo-main {
-    font-size: 32px;
-    font-weight: 900;
-    background: linear-gradient(45deg, var(--gold), var(--blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-    letter-spacing: 1px;
-}
-
-.logo-sub {
-    font-size: 14px;
-    color: var(--text-gray);
-    margin-top: -5px;
-}
-
+/* ===== بطاقات ===== */
 .card {
-    background: rgba(26, 26, 26, 0.8);
+    background: var(--card-bg);
     border-radius: 20px;
     padding: 25px;
-    border: 1px solid rgba(255, 215, 0, 0.3);
+    border: 1px solid rgba(255, 215, 0, 0.2);
     box-shadow: var(--shadow);
-    backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .card:hover {
@@ -80,6 +100,7 @@ body {
     box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
 }
 
+/* ===== أزرار ===== */
 .btn {
     padding: 15px 30px;
     border: none;
@@ -91,8 +112,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    min-width: 150px;
+    gap: 10px;
+    min-width: 140px;
 }
 
 .btn-primary {
@@ -118,20 +139,201 @@ body {
     box-shadow: 0 5px 15px rgba(255, 61, 0, 0.4);
 }
 
+.btn-buy:hover, .btn-sell:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* ===== قائمة الأصول ===== */
+.asset-list {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.asset-item {
+    padding: 15px;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.asset-item:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--gold);
+    transform: translateX(-5px);
+}
+
+.asset-item.selected {
+    background: rgba(255, 215, 0, 0.15);
+    border-color: var(--gold);
+}
+
+.asset-name {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.asset-symbol {
+    color: var(--text-gray);
+    font-size: 14px;
+}
+
+.asset-price {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.asset-change.positive {
+    color: var(--green);
+    font-weight: bold;
+}
+
+.asset-change.negative {
+    color: var(--red);
+    font-weight: bold;
+}
+
+/* ===== شريط الوقت ===== */
+.timeframe-selector {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.time-btn {
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+    min-width: 80px;
+}
+
+.time-btn:hover {
+    background: rgba(30, 144, 255, 0.2);
+    border-color: var(--blue);
+}
+
+.time-btn.active {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+}
+
+/* ===== إشارة الذكاء الاصطناعي ===== */
+.ai-signal {
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+.signal-buy {
+    background: linear-gradient(135deg, rgba(0, 200, 83, 0.2), rgba(0, 230, 118, 0.1));
+    border: 2px solid var(--green);
+}
+
+.signal-sell {
+    background: linear-gradient(135deg, rgba(255, 61, 0, 0.2), rgba(255, 82, 82, 0.1));
+    border: 2px solid var(--red);
+}
+
+.signal-direction {
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.signal-confidence {
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+/* ===== أنيميشن النبض ===== */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+/* ===== تصميم الموبايل ===== */
 @media (max-width: 768px) {
-    .header {
+    .logo-main {
+        font-size: 36px;
+    }
+    
+    .app-header {
         flex-direction: column;
         gap: 15px;
         padding: 15px;
     }
     
-    .logo-main {
-        font-size: 24px;
-    }
-    
     .btn {
         padding: 12px 20px;
-        min-width: 120px;
+        min-width: 110px;
         font-size: 14px;
     }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    .signal-direction {
+        font-size: 32px;
+    }
+    
+    .signal-confidence {
+        font-size: 24px;
+    }
 }
+
+/* ===== شريط التمرير ===== */
+.asset-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.asset-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.asset-list::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
+}
+
+.asset-list::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dark);
+}
+
+/* ===== حاوية الشارت ===== */
+.chart-container {
+    height: 300px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chart-placeholder {
+    color: var(--text-gray);
+    font-size: 18px;
+        }
